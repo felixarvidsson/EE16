@@ -3,31 +3,37 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hitta ord på en webbsida</title>
+    <title>Byt ord på en webbsida</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <?php
     /* Ta emot data */
 $url = $_POST["url"];
-$sordet = $_POST["ordet"];
+$sordet = $_POST["sordet"];
+$nordet = $_POST["nordet"];
 
 
 /* Läs in webbsidan */
-$innehall = file_get_contents($url);
+$gamlaSidan = file_get_contents($url);
+$nyaSidan = "";
 $antal = -1;
-$pos = 1    ;
+$start = 0;
+$slut = 1;
 
-while ($pos != false) {
+/* Fritextsökning */
+while ($slut != false) {
 /* Hitta första position av ordet i texten */
-$pos = stripos($innehall, $sordet, $pos + 1);
-echo"<p>$pos</p>"; /* Debug  */
+$slut = stripos($gamlaSidan, $sordet, $start + 1);
+
+/* Plocka ut textdelen framför hittade ordet */ 
+$nyaSidan = $nyaSidan .  substr($gamlaSidan, $start, $slut) . $nordet;
 $antal++;
+$start = $slut + strlen($sordet);
     
 } 
 
-    
-
+file_put_contents("test.html", $nyaSidan);
 
     /* Skriv ut svaret */
     echo "<p>Vi har hittat $sordet på $antal gånger i webbsidan.</p>";
