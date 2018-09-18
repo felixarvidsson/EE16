@@ -9,23 +9,7 @@
 </head>
 
 <body>
-    <?php
-/* Ta emot data */
-$anman = $_POST["anamn"];
-$losen = $_POST["losen"];
 
-/* Kontrollera uppgifter */
-if ($anman == "felix" && $losen == "arvidsson") {
-    echo "<p>$anman, du är inloggad</p>";
-    
-} else {
-    /* Hoppa tillbaka till inloggningsrutan */
-    header("location: upg_3_2.php");
-    die();
-    
-}
-
-?>
 </body>
 
 </html>
