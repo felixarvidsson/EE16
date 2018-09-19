@@ -26,7 +26,7 @@ $tal1 = $_POST["tal1"];
 ?>
 
     <form action="#" method="post">
-        <label>Tal ett </label><input type="text" name="tal1"><br>
+        <label>Talet </label><input type="text" name="tal1"><br>
         <button>Skriv ut</button>
     </form>
 </body>
