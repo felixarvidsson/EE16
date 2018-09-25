@@ -34,6 +34,9 @@ if (isset($_POST["namn"]) && isset($_POST["adress"]) && isset($_POST["postnr"]) 
     $email = $_POST["email"];
     $fel = 0;
     
+    /* Rensar mellanslag på på postnumret  */
+    $postnr = str_replace($postnr, ' ', '');
+    
     /* Kontrollera att alla fälten är ifyllda */
     if (strlen($namn) == 0) {
         echo "<p>Varning: Var god fyll i namnet!</p>";
