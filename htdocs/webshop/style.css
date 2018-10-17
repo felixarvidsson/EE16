@@ -52,7 +52,16 @@ h1 {
     text-align: center;
 }
 
-#korgen {
+#antalVaror { 
+background:green;
+border-radius: 30px;
+margin-right:100px;
+padding: 5px;
+color: #FFF;
+width: 50px;
+
+}
+#korg {
     width: 200px;
     border: 1px solid #CCC;
     text-align: right;
@@ -79,6 +88,10 @@ div.vara {
 img {
     height: 200px;
     padding: 20px;
+}
+#summa {
+    font-weight: bold;
+    color:red;
 }
 
 table {
