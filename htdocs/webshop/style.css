@@ -52,23 +52,43 @@ h1 {
     text-align: center;
 }
 
-#antalVaror { 
-background:green;
-border-radius: 30px;
-margin-right:100px;
-padding: 5px;
-color: #FFF;
-width: 50px;
+#korg {
+    text-align: right;
 
 }
-#korg {
-    width: 200px;
-    border: 1px solid #CCC;
-    text-align: right;
-    padding: 5px;
-    border-radius:5px;
-    background: #FFF;
+
+#antalVaror { 
+width: 25px;
+height: 25px;
+text-align: center;
+background: green;
+border: none;
+border-radius: 50%;
+color: #FFF;
+font-size: 14px;
+
 }
+
+#total {
+    width: 100px;
+    display: inline-block;
+    text-align: right;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    background: #FFF;
+    margin: 0px 3px 10px 3px;
+}
+
+#kassan {
+    height: 100%;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    height: 26px;
+}
+
 
 main {
     display: grid;
@@ -107,6 +127,11 @@ table {
 table, th, td {
     border: 1px solid #CCC;
 }
+
+table #antal, table #plus {
+    width: 25%;
+}
+
 table #kop {
     background: green;
     color: #FFF;

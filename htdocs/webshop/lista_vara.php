@@ -22,7 +22,12 @@
     <div class="kontainer">
         <header>
             <h1>Alla varor</h1>
-            <div id="korgen">0 kr</div>
+            <form id="korg" method="post" action="kassa.php">
+                <input id="antalVaror" type="text" value="0" name="antalVaror">
+                <input id="total" type="text" value="0 kr" name="total">
+                <input id="korgen" type="hidden" name="korgen">
+                <button id="kassan">Kassan</button>
+            </form>
         </header>
         <main>
             <?php
@@ -34,6 +39,7 @@ foreach ($allaRader as $rad) {
     
     /* Plocka isär raden idess beståndsdelar */
     $delar = explode("¤", $rad);
+    
     $beskrivning = $delar[0];
     $pris = $delar[1]; 
     $bilden = $delar[2];
@@ -41,9 +47,10 @@ foreach ($allaRader as $rad) {
     /* Skriv ut info och HTML */
     echo "<div class=\"vara\">\n"; 
     echo "<img src=\"./varor/$bilden\" alt=\"$beskrivning\">\n";
-    echo "<p>$beskrivning</p>\n";
+    echo "<p id=\"beskrivning\">$beskrivning</p>\n";
     echo "<p>Styckpris: <span id=\"pris\">$pris</span> kr</p>\n";
     echo "<p>Summa: <span id=\"summa\">$pris</span> kr</p>\n";
+    
     echo "<table>\n";
     echo "<tr>\n";
     echo "<td id=\"antal\" rowspan=\"2\">1</td>\n";
@@ -59,7 +66,11 @@ foreach ($allaRader as $rad) {
 
 ?>
         </main>
+        <footer>
+            Felix Arvidsson 2018
+        </footer>
     </div>
-    <script src="skript.js"></script>
+    <script src="skript2.js"></script>
 </body>
+
 </html>
