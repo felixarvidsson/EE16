@@ -24,12 +24,11 @@
         <header>
             <h1>Alla varor</h1>
             <form id="korg" method="post" action="kassa.php">
-                <input id="antalVaror" type="text" value="0" name="antalVaror">
-                <input id="total" type="text" value="0 kr" name="total">
-                <input id="korgen" type="hidden" name="korgen">
-                <button class="fas fa-trash-alt" type="reset"></button>
-                <button id="kassan">Kassan</button>
-                
+                <input id="antalVaror" type="text" value="0" name="antalVaror" readonly>
+                <input id="total" type="text" value="0 kr" name="total" readonly>
+                <input id="korgen" type="hidden" name="korgen" readonly>
+                <button id="tom" class="fas fa-trash-alt" type="reset"></button>
+                <button id="kassan" disabled>Kassan</button>
             </form>
         </header>
         <main>

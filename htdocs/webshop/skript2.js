@@ -7,9 +7,25 @@ function start() {
     var data = [];
     const elementAntalVaror = document.querySelector('#antalVaror');
     const elementTotal = document.querySelector('#total');
+    const elementKassan = document.querySelector('#kassan');
+    const elementKontainer = document.querySelector('.kontainer');
+    const elementTom = document.querySelector('#tom');
+
+    /* Nollställ korgen */
+    elementAntalVaror.value = 0;
+    elementTotal.value = 0;
+    elementKassan.value = "";
+
+    /* Lyssna på klick på reset-knappen */
+    elementTom.addEventListener('click', tom);
+
+    /* Töm korgen */
+    function tom() {
+        elementKassan.disabled = true;
+        data = [];
+    }
 
     /* Lyssna på klick på hela sidan */
-    const elementKontainer = document.querySelector('.kontainer');
     elementKontainer.addEventListener('click', klick);
 
     /* Vad händer när man klickat på sidan? */
@@ -32,6 +48,7 @@ function start() {
         const elementPris = foralder.querySelector('#pris');
         const elementSumma = foralder.querySelector('#summa');
         const elementKorgen = document.querySelector('#korgen');
+
 
         /* Hämta innehållet i elementen */
         var beskrivning = elementBeskrivning.textContent; 
@@ -70,6 +87,9 @@ function start() {
         }
 
         /* Klickade man i cellen #kop? */
+        /* Aktivera knappen Kassan */
+        elementKassan.disabled = false;
+
         if (cell.id === 'kop') {
             /* Addera antal * summa */
             total = total + summa;
@@ -81,13 +101,11 @@ function start() {
             elementTotal.value = total + ' kr';
             elementAntalVaror.value = antalVaror;
 
-            /* Spara undan varor i korgen = dolda input */
+            /* Spara undan varor i korgen = dolda input i JSON-format */
             data.push({ 'beskrivning': beskrivning, 'antal': antal, 'summa': summa, 'pris': pris });
-            console.log(JSON.stringify(data));
-            
-
-            elementKorgen.value = JSON.stringify(data);
-            
+            elementKorgen.value = JSON.stringify(data);     
         }
     }
+
+
 }
