@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="kontainer">
+    <div class="kontainer kassa">
         <header>
             <h1>Kassan</h1>
         </header>
@@ -23,25 +23,28 @@ if (isset($_POST["antalVaror"]) &&
     $total = $_POST["total"];
     $korgen = $_POST["korgen"];
 
-    echo "<p>Antal varor: $antalVaror</p>";
-    echo "<p>Total : $total</p>";
 
     $varor = json_decode($korgen);
     echo "<table>";
     echo "<tr>
         <th>Beskrivning</th>
+        <th>Styckpris</th>
         <th>Antal</th>
         <th>Summa</th>
         </tr>";
     foreach ($varor as $vara) {
         echo "<tr>";
         echo "<td>$vara->beskrivning</td>";
+        echo "<td>$vara->pris</td>";
         echo "<td>$vara->antal</td>";
         echo "<td>$vara->summa kr</td>";
         echo "</tr>";
     }
     echo "</table>";
-
+    echo "<div class=\"total\">";
+    echo "<p>Antal varor: $antalVaror</p>";
+    echo "<p>Totalsumma : $total</p>";
+    echo "</div>";
 
 }
 ?>
