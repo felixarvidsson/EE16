@@ -1,4 +1,5 @@
 <?php
+
 /*
 * Läsa in alla varor och skapa en varusida
 * PHP version 7
@@ -7,6 +8,11 @@
 * @license    PHP CC
 */
 ?>
+
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="sv">
 
@@ -14,7 +20,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Webshop</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -22,7 +29,19 @@
 
     <div class="kontainer listaVara">
         <header>
-            <h1>Alla varor</h1>
+            <h1>Shopsmart</h1>
+            <nav>
+                <a href="./ny_vara.php">Ny vara</a>
+                <a href="./lista_vara.php">Handla</a>
+                <?php
+if(!isset($_SESSION['anamn'])) {
+    echo "<a href=\"./login.php\">Logga in</a>";
+} else {
+    echo "<a href=\"./login.php\">Logga ut</a>";
+}
+?>
+            </nav>
+            <h2>Alla varor</h2>
             <form id="korg" method="post" action="kassa.php">
                 <input id="antalVaror" type="text" value="0" name="antalVaror" readonly>
                 <input id="total" type="text" value="0 kr" name="total" readonly>
@@ -34,13 +53,18 @@
         <main>
             <?php
 /* Öppna textfilen och läs hela innehållet */
-$allaRader = file("beskrivning.txt");
+$allaRader = file("beskrivning.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
 /* Loppa igenom rad för rad */
 foreach ($allaRader as $rad) {
     
     /* Plocka isär raden idess beståndsdelar */
     $delar = explode("¤", $rad);
+
+    /* Om raden inte innehåller tre delar, hoppa över */
+    if (sizeof('$delar') != 3) {
+        continue;
+    }
     
     $beskrivning = $delar[0];
     $pris = $delar[1]; 

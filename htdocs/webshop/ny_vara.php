@@ -8,29 +8,60 @@
 * @license    PHP CC
 */
 ?>
+
+<?php
+session_start();
+
+if (!isset($_SESSION['anamn'])) {
+    header('Location: login.php');
+    exit;
+} 
+
+?>
+
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ny vara</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="kontainer nyVara"></div>
-    <header>
-        <h1>Ny vara</h1>
-    </header>
-    <main>
 
-<?php
+<body>
+    <div class="kontainer nyVara">
+        <header>
+            <h1>Shopsmart</h1>
+            <nav>
+                <a href="./ny_vara.php">Ny vara</a>
+                <a href="./lista_vara.php">Handla</a>
+
+                <?php
+if(!isset($_SESSION['anamn'])) {
+    echo "<a href=\"./login.php\">Logga in</a>";
+} else {
+    echo "<a href=\"./login.php\">Logga ut</a>";
+}
+?>
+
+
+            </nav>
+            <h2>Ny vara</h2>
+        </header>
+
+        <main>
+
+            <?php
 /* Kolla att man har klickat på knappen 'submit' */
 if (isset($_POST['submit'])) {
     /* Ta emot data */
     $filen =  $_FILES['filen'];
     $beskrivning = $_POST["beskrivning"];
     $pris = $_POST["pris"];
-
+    
     /* Ladda upp bilden */
     /* Plocka ut filnamnet */
     $fileName = $filen['name'];
@@ -75,20 +106,25 @@ if (isset($_POST['submit'])) {
         echo "<p>Icke tillåten filtyp!</p>";
     }
     /* Uppladdning slutförd */
-
+    
     /* Spara texten: beskrivning, pris & bildens nya namn */
     $handtag = fopen("beskrivning.txt", "a");
-fwrite($handtag, $beskrivning . "¤" . $pris . "¤" . $fileNewName . PHP_EOL);
-
+    fwrite($handtag, $beskrivning . "¤" . $pris . "¤" . $fileNewName . PHP_EOL);
+    
     fclose($handtag);
 }
 ?>
-    <form action="#" method="post" enctype="multipart/form-data">
-        <label>Beskrivning</label><input type="text" name="beskrivning"><br>
-        <label>Pris</label><input type="text" name="pris"><br>
-        <input type="file" name="filen"><br>
-        <button type="submit" name="submit">Ladda upp vara!</button>
-    </form>
-    </main>
+            <form action="#" method="post" enctype="multipart/form-data">
+                <label>Beskrivning</label><input type="text" name="beskrivning"><br>
+                <label>Pris</label><input type="text" name="pris"><br>
+                <label>Bild på vara</label>
+                <label class="valjFil" for="laddaUpp">
+                    <i class="fas fa-file-upload"></i> Välj bild</label>
+                <input id="laddaUpp" type="file" name="filen"><br>
+                <button type="submit" name="submit">Ladda upp vara!</button>
+            </form>
+        </main>
+    </div>
 </body>
+
 </html>
