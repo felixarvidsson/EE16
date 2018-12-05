@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Display a map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="mapbox.css">
+</head>
+<body>
+    <div id='map'></div>
+    <script>
+        mapboxgl.accessToken =
+            'pk.eyJ1IjoiZHVtYmxlZGF6IiwiYSI6ImNqcGF5MWoxMDIwODIzcG8zNWVvYWZ3a3IifQ.Gdl3T_gIf1YyK3Wxn10ftg';
+        let map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+            center: [-74.50, 40], // starting position [lng, lat]
+            zoom: 12 // starting zoom
+        });
+        
+        map.addEventListener("click", addMarker);
+
+
+        let marker1 = new mapboxgl.Marker({draggable: true})
+        .setLngLat([-74.50, 40])
+        .addTo(map);
+        let marker2 = new mapboxgl.Marker({draggable: true})
+        .setLngLat([-74.51, 40])
+        .addTo(map);
+        let marker3 = new mapboxgl.Marker({draggable: true})
+        .setLngLat([-74.52, 40])
+        .addTo(map);
+
+
+    </script>
+
+</body>
+
+</html>
