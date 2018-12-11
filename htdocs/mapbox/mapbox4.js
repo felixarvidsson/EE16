@@ -1,8 +1,7 @@
 window.onload = start;
 
 function start() {
-    const eBox = document.querySelector(".coordinates");
-    const eBeskrivning = document.querySelector(".beskrivning");
+    const eBox = document.querySelector(".platser");
     const eKnapp = document.querySelector("button");
     const url = "platser.php";
 
@@ -25,8 +24,7 @@ function start() {
         console.log(e.lngLat);
 
         /* Lägg till en ny rad i tabellen för varje click */
-        eBox.innerHTML += e.lngLat.lng.toFixed(4) + "," + e.lngLat.lat.toFixed(4) + "\n";
-        eBeskrivning.innerHTML += "Beskrivning" + "\n";
+        eBox.innerHTML += "<input type=\"text\"> <input type=\"text\">";
     }
     
     eKnapp.addEventListener("click", sparaPlats);
