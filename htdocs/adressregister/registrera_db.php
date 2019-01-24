@@ -29,7 +29,6 @@ include_once("../../admin/konfig_db.php");
             /* echo "<p>Anslutningen lyckades!</p>"; */
         }
 
-        /* Lagra data i tabellen */
         /* Skapa sql-frågan vi skall köra */
         $sql = "INSERT INTO personer (fnamn, enamn, epost) VALUES ('$fnamn', '$enamn', '$epost');";
         $result = $conn->query($sql);
