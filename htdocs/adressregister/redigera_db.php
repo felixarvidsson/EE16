@@ -37,10 +37,8 @@ if (isset($_GET["id"])) {
         } else {
             $rad = $result->fetch_assoc();
             /* $rad är en array med key: fnamn, enamn & epost */
-             
+                
         }
-
-
 }
 ?>
     <div class="kontainer">
@@ -54,7 +52,7 @@ if (isset($_GET["id"])) {
             <label>Förnamn</label>
             <input name="fnamn" type="text" value="<?php echo $rad['fnamn'] ?>">
             <label>Efternamn</label>
-            <input name="enamn" type="text" value="<?php echo $rad['enamn'] ?>" 
+            <input name="enamn" type="text" value="<?php echo $rad['enamn'] ?>"> 
             <label>Epost</label>
             <input name="epost" type="email" value="<?php echo $rad['epost'] ?>">
             <input name="id" type="hidden" value="<?php echo $rad['id'] ?>">

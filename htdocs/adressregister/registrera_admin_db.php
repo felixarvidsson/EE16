@@ -40,27 +40,19 @@ if (isset($_POST['anamn']) && isset($_POST['losen'])) {
         /* echo "<p>Anslutningen lyckades!</p>"; */
     }
     
+    /* Skapa ett hash från lösenordet */
+    $hash = password_hash($losen, PASSWORD_DEFAULT);
+
+
     /* Skapa sql-frågan vi skall köra */
-    $sql = "SELECT * FROM admin  WHERE anamn = '$anamn';";
+    $sql = "INSERT INTO admin (anamn, hash) VALUES ('$anamn', '$hash');";
     $result = $conn->query($sql);
     
     /* Gick det bra? Kunde SQL-satsen köras? */
     if (!$result) {
         die("Det blev fel med SQL-satsen.");
     } else {
-        $rad = $result->fetch_assoc();
-        
-        if (password_verify($losen, $rad['hash'])) {
-            echo "<p>Du är inloggad=)</p>";
-        } else {
-            echo "<p>Felaktig inloggningsinformation</p>";
-        }
-        
-        /* Gick det bra? Kunde SQL-satsen köras? */
-        if (!$result) {
-            die("Det blev fel med SQL-satsen.");
-        } else {
-        }
+        echo "<p>Admin registrerad</p>";
     }
     
     /* Stänger ned anslutningen */
@@ -68,7 +60,7 @@ if (isset($_POST['anamn']) && isset($_POST['losen'])) {
 }
 
 ?>
-        <form action="logga_in_db.php" method="post">
+        <form action="#" method="post">
             <label>Användarnamn</label><input type="text" name="anamn">
             <label>Lösenord</label><input type="password" name="losen">
             <button>Logga in</button>
